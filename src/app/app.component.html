@@ -1,0 +1,71 @@
+<header class="header">
+  <form class="header__main-form" [formGroup]="form">
+    <div class="header__field">
+      <label for="timerInterval">Timer Interval (ms): </label>
+      <input min="0" type="number" id="timerInterval" formControlName="timerInterval" />
+    </div>
+
+    <div class="header__field">
+      <label for="dataSize">Data Size: </label>
+      <input min="0" type="number" id="dataSize" formControlName="dataSize" />
+    </div>
+  </form>
+
+  <div class="header__secondary-form">
+    <div class="header__field">
+      <label for="addIds">Additional array ids: </label>
+      <input id="addIds" [formControl]="addIdsControl" />
+    </div>
+  </div>
+</header>
+
+<table>
+  <thead>
+  <tr>
+    <th>id</th>
+
+    <th>int</th>
+
+    <th>float</th>
+
+    <th>color</th>
+
+    <th>child</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let element of dataElements; trackBy: trackById">
+    <td>
+      {{ element.id }}
+    </td>
+
+    <td>
+      {{ element.int }}
+    </td>
+
+    <td>
+      {{ element.float }}
+    </td>
+
+    <td [style.background]="element.color">
+      {{ element.color }}
+    </td>
+
+    <td>
+      <table class="inner-table">
+        <tr>
+          <th>id</th>
+
+          <th>color</th>
+        </tr>
+        <tr>
+          <td>{{ element.child.id }}</td>
+
+          <td [style.background]="element.child.color">{{ element.child.color }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
